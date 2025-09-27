@@ -1,10 +1,8 @@
 <?php
-
 session_start();
 
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,6 +10,55 @@ session_start();
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Crown & King Hair Salon</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ACCOUNT DROPDOWN STYLES */
+    .account {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #fff;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .account img {
+      width: 35px;
+      height: 35px;
+    }
+    .account-dropdown {
+      display: none;
+      position: absolute;
+      top: 120%;
+      right: 0;
+      background: #222;
+      border: 1px solid #555;
+      padding: 10px;
+      width: 200px;
+      text-align: left;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+      z-index: 1000;
+    }
+    .account-dropdown p {
+      margin: 5px 0;
+      font-size: 0.95rem;
+    }
+    .account-dropdown form {
+      margin-top: 10px;
+    }
+    .account-dropdown button {
+      width: 100%;
+      padding: 8px 0;
+      border: none;
+      background: #cca46c;
+      color: #222;
+      font-weight: 700;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .account-dropdown button:hover {
+      background: #e0b865;
+    }
+  </style>
 </head>
 <body>
 
@@ -26,18 +73,29 @@ session_start();
         <a href="#contact">Contact</a>
       </nav>
 
-      <div class="account">
+      <!-- ACCOUNT -->
+      <div class="account" id="account">
         <img src="img/profile.png" alt="Account Icon">
-        <span>
+        <span id="account-name">
           <?php
-          // ✅ Check login status
-          if (isset($_SESSION["username"]) && !empty($_SESSION["username"])) {
-              echo "Hi " . htmlspecialchars($_SESSION["username"]);
+          if(isset($_SESSION['username']) && !empty($_SESSION['username'])){
+            echo "Hi " . htmlspecialchars($_SESSION['username']);
           } else {
-              echo "Account";
+            echo "Account";
           }
           ?>
         </span>
+
+        <!-- DROPDOWN -->
+        <div class="account-dropdown" id="account-dropdown">
+          <?php if(isset($_SESSION['username']) && !empty($_SESSION['username'])): ?>
+            <p><strong><?php echo htmlspecialchars($_SESSION['username']); ?></strong></p>
+            <p><?php echo htmlspecialchars($_SESSION['email']); ?></p>
+            <form action="../Logout/logout.php" method="POST">
+              <button type="submit">Logout</button>
+            </form>
+          <?php endif; ?>
+        </div>
       </div>
     </div>
   </header>
@@ -89,11 +147,10 @@ session_start();
     </div>
   </section>
 
-  <!-- ABOUT US -->
+  <!-- ABOUT -->
   <section id="about" class="about">
     <div class="container">
       <h2>ABOUT US</h2>
-
       <div class="timeline">
         <div>
           <h3>Who We Are</h3>
@@ -144,7 +201,27 @@ session_start();
       </div>
     </div>
   </section>
- 
+
+  <script>
+    const account = document.getElementById('account');
+    const dropdown = document.getElementById('account-dropdown');
+    const isLoggedIn = <?php echo isset($_SESSION['username']) ? 'true' : 'false'; ?>;
+
+    account.addEventListener('click', () => {
+      if(isLoggedIn){
+        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+      } else {
+        window.location.href = '../Sign in/index.php';
+      }
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+      if(!account.contains(e.target)){
+        dropdown.style.display = 'none';
+      }
+    });
+  </script>
   <script src="script.js"></script>
 </body>
 </html>
