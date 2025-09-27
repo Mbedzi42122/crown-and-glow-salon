@@ -1,12 +1,12 @@
 @import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
 
-/* GENERAL STYLES */
 body.booking-page {
   font-family: 'Inter', sans-serif;
   background: url('img/Background.png') no-repeat center center/cover;
-  min-height: 100vh;
+  height: 100vh;
   margin: 0;
   color: #fff;
+  overflow: hidden; /* prevent scroll */
 }
 
 /* HEADER */
@@ -59,35 +59,38 @@ nav a:hover {
 
 /* BOOKING HERO */
 .booking-hero {
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
-  padding-top: 100px; /* account for fixed header */
+  padding-top: 80px; /* account for fixed header */
+  box-sizing: border-box;
 }
 
 /* BOOKING FORM */
 .booking-form {
-  background: rgba(0, 0, 0, 0.8);
-  padding: 40px;
-  border-radius: 20px;
-  max-width: 800px;
-  width: 90%;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
-}
+    background: rgba(0, 0, 0, 0.493);
+    padding: 50px 60px;
+    border-radius: 20px;
+    max-width: 950px;
+    width: 90%;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+    margin-top: 50px; /* moves the form down */
+  }
 
 .booking-form h1 {
   text-align: center;
-  margin-bottom: 30px;
-  font-size: 2rem;
+  margin-bottom: 35px;
+  font-size: 2.2rem;
   color: #cca46c;
+  letter-spacing: 1px;
 }
 
 /* FORM GRID */
 .form-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  gap: 25px;
 }
 
 .form-group {
@@ -96,31 +99,33 @@ nav a:hover {
 }
 
 .form-group label {
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 1rem;
 }
 
 .form-group input,
 .form-group select,
 .form-group textarea {
-  padding: 12px;
+  padding: 14px;
   border-radius: 8px;
   border: none;
-  font-size: 1rem;
+  font-size: 1.05rem;
+  background-color: rgba(255,255,255,0.9);
+  color: #000;
 }
 
 /* SUBMIT BUTTON */
 .booking-form .btn {
   display: block;
   width: 100%;
-  margin-top: 25px;
-  padding: 14px;
+  margin-top: 35px;
+  padding: 16px;
   border-radius: 50px;
   border: 3px solid #cca46c;
   background: transparent;
   color: #cca46c;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-weight: 700;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -135,5 +140,17 @@ nav a:hover {
 @media (max-width: 768px) {
   .form-grid {
     grid-template-columns: 1fr;
+  }
+
+  body.booking-page {
+    overflow-y: auto; /* enable small scroll for phones */
+  }
+
+  .booking-form {
+    padding: 35px 25px;
+  }
+
+  .booking-form h1 {
+    font-size: 1.7rem;
   }
 }
