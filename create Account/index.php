@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION["role"] = "user";
 
             // Redirect to homepage
-            header("Location: ../HOME/index.html");
+            header("Location: ../HOME/index.php");
             exit();
         } else {
             $message = "Error: " . $stmt->error;
@@ -58,17 +58,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Account</title>
-    <link rel="stylesheet" href="style.css">
+    
 </head>
 <body>
     <div class="desktop">
         
-        <div class="image-side">
-            <img class="bacc" src="img/bacc 1.png" alt="Background Image">
-        </div>
-
+      
         <div class="container">
-            <img class="logo" src="img/logo 1.png" alt="Logo">
+           
 
             <h1>Create Account</h1>
 
