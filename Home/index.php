@@ -105,7 +105,7 @@ session_start();
     <div class="hero-content container">
       <h1>MAKING YOU LOOK <span class="accent">AWESOME & MANLY</span></h1>
       <p>Experience luxury and elegance at Crown and Glow Hair Salon. Our expert stylists create stunning transformations that enhance your natural beauty.</p>
-      <a href="../Book/index.html" class="btn">BOOK NOW</a>
+      <a href="../Book/index.php" class="btn">BOOK NOW</a>
     </div>
   </section>
 
