@@ -1,19 +1,60 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta charset="utf-8" />
-    <link rel="stylesheet" href="globals.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crown & Glow Admin Dashboard</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="macbook-air">
-      <div class="frame">
-        <img class="logo" src="img/logo.png" />
-        <div class="text-wrapper">BOOKINGS</div>
-      </div>
-      <div class="div">BOOKINGS</div>
-      <img class="profile" src="img/profile.png" />
+    <div class="dashboard">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="logo-container">
+          <img src="img/logo.png" alt="Crown & Glow Logo" class="logo" />
+         
+        </div>
+        <nav class="nav">
+          <button class="nav-item active" onclick="showSection('bookings')">
+            BOOKINGS
+          </button>
+          <button class="nav-item" onclick="showSection('clients')">
+            CLIENTS
+          </button>
+          <button class="nav-item" onclick="showSection('services')">
+            SERVICES
+          </button>
+          <button class="nav-item" onclick="showSection('settings')">
+            SETTINGS
+          </button>
+        </nav>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="content">
+        <header class="topbar">
+          <h2 id="section-title">BOOKINGS</h2>
+          <img src="img/profile.png" alt="Profile" class="profile" />
+        </header>
+
+        <section id="bookings" class="section active">
+          <p>All current bookings will appear here.</p>
+        </section>
+
+        <section id="clients" class="section">
+          <p>Client list and management tools.</p>
+        </section>
+
+        <section id="services" class="section">
+          <p>Manage salon services and pricing.</p>
+        </section>
+
+        <section id="settings" class="section">
+          <p>Change account settings and preferences.</p>
+        </section>
+      </main>
     </div>
+
+    <script src="script.js"></script>
   </body>
 </html>

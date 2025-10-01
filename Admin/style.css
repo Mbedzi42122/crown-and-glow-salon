@@ -1,76 +1,184 @@
 @import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
+
 * {
-  -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
+  font-family: "Inter", sans-serif;
 }
-html,
-body {
-  margin: 0px;
+
+html, body {
   height: 100%;
+  margin: 0;
+  background-color: #444;
+  color: #fff;
 }
-/* a blue color as a generic focus style */
-button:focus-visible {
-  outline: 2px solid #4a90e2 !important;
-  outline: -webkit-focus-ring-color auto 5px !important;
+
+/* Dashboard Layout */
+.dashboard {
+  display: flex;
+  height: 100vh;
+  width: 100%;
 }
-a {
-  text-decoration: none;
+
+/* Sidebar */
+.sidebar {
+  background-color: #252525;
+  width: 260px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1rem;
+  gap: 2rem;
 }
-.macbook-air {
-    background-color: #444444;
-    width: 100%;
-    min-width: 1280px;
-    min-height: 832px;
-    display: flex;
-  }
-  
-  .macbook-air .frame {
-    width: 295px;
-    height: 832px;
-    display: flex;
+
+.logo-container {
+  text-align: center;
+}
+
+.logo {
+  width: 120px;
+  height: auto;
+  margin-bottom: 0.5rem;
+}
+
+.salon-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.4;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.nav-item {
+  background: none;
+  border: none;
+  color: #fff;
+  padding: 1rem;
+  text-align: left;
+  width: 100%;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.nav-item:hover,
+.nav-item.active {
+  background-color: #3a3a3a;
+  border-radius: 8px;
+  color: #cca46c;
+}
+
+/* Content Area */
+.content {
+  flex: 1;
+  background-color: #444;
+  display: flex;
+  flex-direction: column;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid #555;
+}
+
+.profile {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.account {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.account-dropdown {
+  display: none;
+  position: absolute;
+  top: 120%;
+  right: 0;
+  background: #222;
+  border: 1px solid #555;
+  padding: 10px;
+  width: 200px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.account-dropdown button {
+  width: 100%;
+  background: #cca46c;
+  border: none;
+  padding: 8px;
+  border-radius: 5px;
+  color: #222;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* Section Content */
+.section {
+  display: none;
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+.section.active {
+  display: block;
+}
+
+/* Booking Table */
+.booking-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1.5rem;
+}
+
+.booking-table th, .booking-table td {
+  border: 1px solid #777;
+  padding: 10px;
+  text-align: center;
+}
+
+.booking-table th {
+  background-color: #333;
+}
+
+.delete-btn {
+  background: #f44336;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  background: #d32f2f;
+}
+
+@media (max-width: 768px) {
+  .dashboard {
     flex-direction: column;
-    gap: 85px;
-    background-color: #252525;
   }
-  
-  .macbook-air .logo {
-    margin-left: 48px;
-    width: 191px;
-    height: 191px;
-    margin-top: 71px;
-    aspect-ratio: 1;
-    object-fit: cover;
+
+  .sidebar {
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-around;
   }
-  
-  .macbook-air .text-wrapper {
-    margin-left: 79px;
-    width: 129px;
-    height: 29px;
-    font-family: "Inter-Bold", Helvetica;
-    font-weight: 700;
-    color: #ffffff;
-    font-size: 24px;
-    letter-spacing: 0;
-    line-height: normal;
+
+  .nav {
+    flex-direction: row;
   }
-  
-  .macbook-air .div {
-    margin-top: 138px;
-    width: 129px;
-    height: 29px;
-    margin-left: 47px;
-    font-family: "Inter-Bold", Helvetica;
-    font-weight: 700;
-    color: #ffffff;
-    font-size: 24px;
-    letter-spacing: 0;
-    line-height: normal;
-  }
-  
-  .macbook-air .profile {
-    margin-top: 27px;
-    width: 55px;
-    height: 55px;
-    margin-left: 713px;
-  }
-  
+}

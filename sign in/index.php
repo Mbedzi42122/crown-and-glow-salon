@@ -8,49 +8,72 @@ include("../API/db_connect.php");
 $message = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_POST["email"];
-    $password = $_POST["password"];
+    $email = trim($_POST["email"]);
+    $password = trim($_POST["password"]);
 
-    // Check in users table only
-    $sql = "SELECT * FROM users WHERE email = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $result = $stmt->get_result();
+    // === 1️⃣ Try to log in as ADMIN first ===
+    $sql_admin = "SELECT * FROM admins WHERE email = ?";
+    $stmt_admin = $conn->prepare($sql_admin);
+    $stmt_admin->bind_param("s", $email);
+    $stmt_admin->execute();
+    $result_admin = $stmt_admin->get_result();
 
-    if ($result->num_rows === 1) {
-        $user = $result->fetch_assoc();
+    if ($result_admin->num_rows === 1) {
+        $admin = $result_admin->fetch_assoc();
 
-        // Verify password
-        if (password_verify($password, $user["password"])) {
-            // Store user in session
-            $_SESSION["user_id"] = $user["id"];
-            $_SESSION["username"] = $user["username"];
-            $_SESSION["email"] = $user["email"];
-            $_SESSION["role"] = "user";
+        // ❗Admin passwords are NOT hashed
+        if ($password === $admin["password"]) {
+            // ✅ Successful admin login
+            $_SESSION["admin_id"] = $admin["id"];
+            $_SESSION["admin_name"] = $admin["username"];
+            $_SESSION["admin_email"] = $admin["email"];
+            $_SESSION["role"] = "admin";
 
-            // Redirect to homepage
-            header("Location: ../HOME/index.php");
+            header("Location: ../Admin/index.php");
             exit();
         } else {
-            $message = "Invalid password!";
+            $message = "Invalid admin password!";
         }
     } else {
-        $message = "Email not found!";
+        // === 2️⃣ Try to log in as REGULAR USER ===
+        $sql_user = "SELECT * FROM users WHERE email = ?";
+        $stmt_user = $conn->prepare($sql_user);
+        $stmt_user->bind_param("s", $email);
+        $stmt_user->execute();
+        $result_user = $stmt_user->get_result();
+
+        if ($result_user->num_rows === 1) {
+            $user = $result_user->fetch_assoc();
+
+            // ✅ Users still use hashed passwords
+            if (password_verify($password, $user["password"])) {
+                $_SESSION["user_id"] = $user["id"];
+                $_SESSION["username"] = $user["username"];
+                $_SESSION["email"] = $user["email"];
+                $_SESSION["role"] = "user";
+
+                header("Location: ../HOME/index.php");
+                exit();
+            } else {
+                $message = "Invalid user password!";
+            }
+        } else {
+            $message = "Email not found!";
+        }
+        $stmt_user->close();
     }
 
-    $stmt->close();
+    $stmt_admin->close();
     $conn->close();
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Crown & Glow | Sign In</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div class="container">
@@ -65,12 +88,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <p>Sign in with your email address and password.</p>
 
         <!-- PHP Error Message -->
-        <?php if (!empty($message)) { ?>
+        <?php if (!empty($message)): ?>
           <p style="color:red;"><?php echo htmlspecialchars($message); ?></p>
-        <?php } ?>
+        <?php endif; ?>
 
         <form id="loginForm" method="POST" action="">
-          <label for="email">Email Address.</label>
+          <label for="email">Email Address</label>
           <input
             type="email"
             id="email"
@@ -79,7 +102,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             required
           />
 
-          <label for="password">Password.</label>
+          <label for="password">Password</label>
           <input
             type="password"
             id="password"
@@ -110,18 +133,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         document.getElementById("rememberMe").checked = true;
       }
 
-      document
-        .getElementById("loginForm")
-        .addEventListener("submit", function (e) {
-          const email = document.getElementById("email").value.trim();
-          const rememberMe = document.getElementById("rememberMe").checked;
+      document.getElementById("loginForm").addEventListener("submit", function () {
+        const email = document.getElementById("email").value.trim();
+        const rememberMe = document.getElementById("rememberMe").checked;
 
-          if (rememberMe) {
-            localStorage.setItem("rememberedEmail", email);
-          } else {
-            localStorage.removeItem("rememberedEmail");
-          }
-        });
+        if (rememberMe) {
+          localStorage.setItem("rememberedEmail", email);
+        } else {
+          localStorage.removeItem("rememberedEmail");
+        }
+      });
     </script>
   </body>
 </html>
