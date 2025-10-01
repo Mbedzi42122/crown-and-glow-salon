@@ -166,7 +166,23 @@ html, body {
 .delete-btn:hover {
   background: #d32f2f;
 }
-
+/* Client Table */
+.client-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1.5rem;
+  }
+  
+  .client-table th, .client-table td {
+    border: 1px solid #777;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .client-table th {
+    background-color: #333;
+  }
+  
 @media (max-width: 768px) {
   .dashboard {
     flex-direction: column;

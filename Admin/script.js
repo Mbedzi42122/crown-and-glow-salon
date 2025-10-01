@@ -11,9 +11,10 @@ function showSection(sectionId) {
     document.getElementById("section-title").textContent =
       sectionId.charAt(0).toUpperCase() + sectionId.slice(1);
   
-    // If BOOKINGS is selected, fetch bookings via AJAX
     if (sectionId === "bookings") {
       fetchBookings();
+    } else if (sectionId === "clients") {
+      fetchClients();
     }
   }
   
@@ -27,6 +28,19 @@ function showSection(sectionId) {
       .catch(() => {
         document.getElementById("bookings-content").innerHTML =
           "<p>Error loading bookings.</p>";
+      });
+  }
+  
+  // Fetch clients (users with at least one booking)
+  function fetchClients() {
+    fetch("fetch_clients.php")
+      .then((res) => res.text())
+      .then((html) => {
+        document.getElementById("clients-content").innerHTML = html;
+      })
+      .catch(() => {
+        document.getElementById("clients-content").innerHTML =
+          "<p>Error loading clients.</p>";
       });
   }
   

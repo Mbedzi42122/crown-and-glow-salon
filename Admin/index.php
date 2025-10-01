@@ -1,10 +1,10 @@
 <?php
 session_start();
-include '../API/db_connect.php'; // database connection file
+include '../API/db_connect.php'; 
 
 // Ensure admin is logged in
 if (!isset($_SESSION['admin_id'])) {
-    header("Location: ../SignIn/index.php");
+    header("Location: ../sign in/index.php");
     exit;
 }
 ?>
@@ -22,7 +22,6 @@ if (!isset($_SESSION['admin_id'])) {
       <aside class="sidebar">
         <div class="logo-container">
           <img src="img/logo.png" alt="Crown & Glow Logo" class="logo" />
-          
         </div>
         <nav class="nav">
           <button class="nav-item active" onclick="showSection('bookings')">BOOKINGS</button>
@@ -55,7 +54,7 @@ if (!isset($_SESSION['admin_id'])) {
         </section>
 
         <section id="clients" class="section">
-          <p>Manage clients here.</p>
+          <div id="clients-content">Loading clients...</div>
         </section>
 
         <section id="services" class="section">
