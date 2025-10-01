@@ -1,0 +1,76 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
+* {
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0px;
+  height: 100%;
+}
+/* a blue color as a generic focus style */
+button:focus-visible {
+  outline: 2px solid #4a90e2 !important;
+  outline: -webkit-focus-ring-color auto 5px !important;
+}
+a {
+  text-decoration: none;
+}
+.macbook-air {
+    background-color: #444444;
+    width: 100%;
+    min-width: 1280px;
+    min-height: 832px;
+    display: flex;
+  }
+  
+  .macbook-air .frame {
+    width: 295px;
+    height: 832px;
+    display: flex;
+    flex-direction: column;
+    gap: 85px;
+    background-color: #252525;
+  }
+  
+  .macbook-air .logo {
+    margin-left: 48px;
+    width: 191px;
+    height: 191px;
+    margin-top: 71px;
+    aspect-ratio: 1;
+    object-fit: cover;
+  }
+  
+  .macbook-air .text-wrapper {
+    margin-left: 79px;
+    width: 129px;
+    height: 29px;
+    font-family: "Inter-Bold", Helvetica;
+    font-weight: 700;
+    color: #ffffff;
+    font-size: 24px;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .macbook-air .div {
+    margin-top: 138px;
+    width: 129px;
+    height: 29px;
+    margin-left: 47px;
+    font-family: "Inter-Bold", Helvetica;
+    font-weight: 700;
+    color: #ffffff;
+    font-size: 24px;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .macbook-air .profile {
+    margin-top: 27px;
+    width: 55px;
+    height: 55px;
+    margin-left: 713px;
+  }
+  
