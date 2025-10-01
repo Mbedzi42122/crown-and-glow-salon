@@ -72,6 +72,7 @@ $stmt->close();
         <a href="../Home/index.php#services">Service</a>
         <a href="../Home/index.php#about">About</a>
         <a href="../Home/index.php#contact">Contact</a>
+        <a href="../Bookings/index.php">Bookings</a>
       </nav>
 
       <!-- ACCOUNT -->

@@ -71,6 +71,7 @@ session_start();
         <a href="#services">Service</a>
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
+        <a href="../Bookings/index.php">Bookings</a>
       </nav>
 
       <!-- ACCOUNT -->

@@ -63,6 +63,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         <a href="../Home/index.php">Service</a>
         <a href="../Home/index.php">About</a>
         <a href="../Home/index.php">Contact</a>
+        <a href="../Bookings/index.php">Bookings</a>
       </nav>
 
       <!-- ACCOUNT -->
