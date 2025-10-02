@@ -219,14 +219,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <?php } ?>
 
     <form method="POST" action="">
+  
+      <div class="form-group">
+        <label for="username">UserName</label>
+        <input type="text" name="username" id="username" placeholder="Enter Username" required />
+      </div>
+
       <div class="form-group">
         <label for="password">Password</label>
         <input type="password" name="password" id="password" placeholder="Enter Password" required />
       </div>
 
       <div class="form-group">
-        <label for="username">UserName</label>
-        <input type="text" name="username" id="username" placeholder="Enter Username" required />
+        <label for="email">Email Address</label>
+        <input type="email" name="email" id="email" placeholder="Enter Email Address" required />
       </div>
 
       <div class="form-group">
@@ -234,10 +240,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="password" name="confirm_password" id="confirm-password" placeholder="Confirm Password" required />
       </div>
 
-      <div class="form-group">
-        <label for="email">Email Address</label>
-        <input type="email" name="email" id="email" placeholder="Enter Email Address" required />
-      </div>
 
       <div class="form-group">
         <label for="mobile">Mobile Number</label>
