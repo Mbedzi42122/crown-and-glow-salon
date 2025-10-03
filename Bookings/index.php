@@ -106,7 +106,7 @@ $stmt->close();
             <th>Service</th>
             <th>Date</th>
             <th>Time</th>
-            <th>Notes</th>
+            
             <th>Action</th>
           </tr>
         </thead>
@@ -116,7 +116,7 @@ $stmt->close();
             <td><?php echo htmlspecialchars($booking['service']); ?></td>
             <td><?php echo htmlspecialchars($booking['booking_date']); ?></td>
             <td><?php echo htmlspecialchars($booking['booking_time']); ?></td>
-            <td><?php echo htmlspecialchars($booking['notes']); ?></td>
+           
             <td>
               <form method="POST" style="display:inline;">
                 <input type="hidden" name="delete_booking_id" value="<?php echo $booking['id']; ?>">
@@ -140,7 +140,7 @@ $stmt->close();
             <th>Service</th>
             <th>Date</th>
             <th>Time</th>
-            <th>Notes</th>
+           
           </tr>
         </thead>
         <tbody>
@@ -149,7 +149,7 @@ $stmt->close();
             <td><?php echo htmlspecialchars($booking['service']); ?></td>
             <td><?php echo htmlspecialchars($booking['booking_date']); ?></td>
             <td><?php echo htmlspecialchars($booking['booking_time']); ?></td>
-            <td><?php echo htmlspecialchars($booking['notes']); ?></td>
+           
           </tr>
           <?php endforeach; ?>
         </tbody>

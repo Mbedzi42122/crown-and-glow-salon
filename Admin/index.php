@@ -26,7 +26,7 @@ if (!isset($_SESSION['admin_id'])) {
         <nav class="nav">
           <button class="nav-item active" onclick="showSection('bookings')">BOOKINGS</button>
           <button class="nav-item" onclick="showSection('clients')">CLIENTS</button>
-          <button class="nav-item" onclick="showSection('services')">SERVICES</button>
+         
           <button class="nav-item" onclick="showSection('settings')">SETTINGS</button>
         </nav>
       </aside>
@@ -55,10 +55,6 @@ if (!isset($_SESSION['admin_id'])) {
 
         <section id="clients" class="section">
           <div id="clients-content">Loading clients...</div>
-        </section>
-
-        <section id="services" class="section">
-          <p>Manage salon services and pricing here.</p>
         </section>
 
         <section id="settings" class="section">

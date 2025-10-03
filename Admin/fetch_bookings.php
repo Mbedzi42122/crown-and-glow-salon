@@ -18,7 +18,7 @@ if (isset($_POST['delete_booking_id'])) {
 
 // Fetch all bookings (admin can see all)
 $stmt = $conn->prepare("
-  SELECT b.id, b.service, b.booking_date, b.booking_time, b.notes, u.username, u.email
+  SELECT b.id, b.service, b.booking_date, b.booking_time, u.username, u.email
   FROM bookings b
   JOIN users u ON b.user_id = u.id
   ORDER BY b.booking_date DESC, b.booking_time DESC
@@ -35,7 +35,7 @@ if ($result->num_rows > 0): ?>
         <th>Service</th>
         <th>Date</th>
         <th>Time</th>
-        <th>Notes</th>
+        
         <th>Action</th>
       </tr>
     </thead>
@@ -47,7 +47,7 @@ if ($result->num_rows > 0): ?>
         <td><?= htmlspecialchars($row['service']); ?></td>
         <td><?= htmlspecialchars($row['booking_date']); ?></td>
         <td><?= htmlspecialchars($row['booking_time']); ?></td>
-        <td><?= htmlspecialchars($row['notes']); ?></td>
+      
         <td>
           <form method="POST" onsubmit="return confirm('Delete this booking?');">
             <input type="hidden" name="delete_booking_id" value="<?= $row['id']; ?>">
