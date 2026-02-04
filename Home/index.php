@@ -176,7 +176,7 @@ session_start();
         </div>
         <div>
           <h3>Operating Hours</h3>
-          <p>Monday – Friday: 09:00 AM – 07:00 PM<br>Saturday: 09:00 AM – 05:00 PM<br>Sunday: Closed</p>
+          <p>Monday – Friday: 09:00 AM – 07:00 PM<br>Saturday: Closed<br>Sunday: Closed</p>
         </div>
       </div>
     </div>
